@@ -16,7 +16,8 @@ public class SudokuGridReader {
         try {
             scanner = new Scanner(new File(file));
         } catch (FileNotFoundException e) {
-            throw new SudokuGridIOException(format("File %s not found at path.", file));
+            System.out.println("INVALID");
+            throw new SudokuGridIOException(format("File %s not found", file));
         }
         List<int[]> grid = new ArrayList<>();
         while (scanner.hasNext()) {

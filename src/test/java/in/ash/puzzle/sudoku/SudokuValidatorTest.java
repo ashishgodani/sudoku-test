@@ -86,7 +86,7 @@ public class SudokuValidatorTest {
         ValidationResult result = new ValidationResult();
         SudokuValidator.validateGridElements().apply(new SudokuGrid(new int[][]{{10, 11, 12, 12, 13, 15, 18, 9, 1}}), result);
         assertEquals("INVALID", result.getMessage());
-        assertEquals("Row 0 has invalid [10, 11, 12, 12, 13, 15, 18]", result.getErrorText());
+        assertEquals("Row 0 has invalid elements [10, 11, 12, 12, 13, 15, 18]", result.getErrorText());
     }
 
     @Test
