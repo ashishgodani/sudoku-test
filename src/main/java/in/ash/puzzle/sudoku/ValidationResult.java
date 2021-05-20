@@ -7,25 +7,25 @@ import java.util.stream.Collectors;
 
 public class ValidationResult {
 
-    private final List<Optional<String>> results;
+    private final List<Optional<String>> errors;
 
     public ValidationResult() {
-        results = new ArrayList<>();
+        errors = new ArrayList<>();
     }
 
-    public String getMessage() {
-        return results.stream().anyMatch(Optional::isPresent) ? "INVALID" : "VALID";
+    public String getValidationMessage() {
+        return errors.stream().anyMatch(Optional::isPresent) ? "INVALID" : "VALID";
     }
 
     public String getErrorText() {
-        return Optional.of(results.stream()
+        return Optional.of(errors.stream()
                 .filter(Optional::isPresent)
                 .map(Optional::get)
-                .collect(Collectors.joining(",")))
+                .collect(Collectors.joining(", ")))
                 .orElse("");
     }
 
-    public void add(String validation_error) {
-        results.add(Optional.ofNullable(validation_error));
+    public void add(String error) {
+        errors.add(Optional.ofNullable(error));
     }
 }

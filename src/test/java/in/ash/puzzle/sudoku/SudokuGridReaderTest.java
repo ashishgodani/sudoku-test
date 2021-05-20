@@ -13,11 +13,13 @@ class SudokuGridReaderTest {
 
         assertEquals(9, sudokuGrid.getNumberOfRows());
         assertEquals(9, sudokuGrid.getNumberOfColumns());
-        assertArrayEquals(new int[]{7,9,2,1,5,4,3,8,6}, sudokuGrid.getRowElements(0));
+        assertArrayEquals(new int[]{7, 9, 2, 1, 5, 4, 3, 8, 6}, sudokuGrid.getRowElements(0));
     }
 
     @Test
-    public void shouldThrowExceptionForANonExistentFile(){
-        assertThrows(SudokuGridIOException.class, () -> SudokuGridReader.readSudokuGridFromFile("nofile.txt"));
+    public void shouldThrowExceptionForANonExistentFile() {
+        assertThrows(SudokuGridIOException.class,
+                () -> SudokuGridReader.readSudokuGridFromFile("nofile.txt"));
     }
+
 }

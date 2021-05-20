@@ -13,19 +13,19 @@ public class ValidationResultTest {
         ValidationResult result = new ValidationResult();
         result.add("error1");
         result.add("error2");
-        assertEquals("error1,error2", result.getErrorText());
+        assertEquals("error1, error2", result.getErrorText());
     }
 
     @Test
     public void shouldReturnValidResultWithNoErrors() {
         ValidationResult result = new ValidationResult();
-        assertEquals("VALID", result.getMessage());
+        assertEquals("VALID", result.getValidationMessage());
     }
 
     @Test
     public void shouldReturnInvalidWhenResultHasErrors() {
         ValidationResult result = new ValidationResult();
         result.add("err");
-        assertEquals("INVALID", result.getMessage());
+        assertEquals("INVALID", result.getValidationMessage());
     }
 }

@@ -5,7 +5,7 @@ import static java.util.stream.IntStream.range;
 
 public class SudokuGrid {
 
-    private int[][] grid;
+    private final int[][] grid;
 
     public SudokuGrid(int[][] grid) {
         this.grid = grid;

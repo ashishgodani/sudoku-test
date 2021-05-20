@@ -13,7 +13,7 @@ public class SudokuValidatorTest {
         ValidationResult result = new ValidationResult();
         SudokuValidator.validateGridStructure().apply(new SudokuGrid(new int[9][9]), result);
 
-        assertEquals("VALID", result.getMessage());
+        assertEquals("VALID", result.getValidationMessage());
     }
 
     @Test
@@ -21,7 +21,7 @@ public class SudokuValidatorTest {
         ValidationResult result = new ValidationResult();
         SudokuValidator.validateGridStructure().apply(new SudokuGrid(new int[9][10]), result);
 
-        assertEquals("INVALID", result.getMessage());
+        assertEquals("INVALID", result.getValidationMessage());
         assertEquals("Grid should be 9 rows and 9 columns.", result.getErrorText());
     }
 
@@ -30,7 +30,7 @@ public class SudokuValidatorTest {
         ValidationResult result = new ValidationResult();
         SudokuValidator.validateGridStructure().apply(new SudokuGrid(new int[10][9]), result);
 
-        assertEquals("INVALID", result.getMessage());
+        assertEquals("INVALID", result.getValidationMessage());
         assertEquals("Grid should be 9 rows and 9 columns.", result.getErrorText());
     }
 
@@ -39,7 +39,7 @@ public class SudokuValidatorTest {
         ValidationResult result = new ValidationResult();
         SudokuValidator.validateGridStructure().apply(new SudokuGrid(new int[10][]), result);
 
-        assertEquals("INVALID", result.getMessage());
+        assertEquals("INVALID", result.getValidationMessage());
         assertEquals("Grid should be 9 rows and 9 columns.", result.getErrorText());
     }
 
@@ -53,7 +53,7 @@ public class SudokuValidatorTest {
         ValidationResult result = new ValidationResult();
         SudokuValidator.validateRowsForDuplicates().apply(gridWithDuplicates, result);
 
-        assertEquals("INVALID", result.getMessage());
+        assertEquals("INVALID", result.getValidationMessage());
         assertEquals("Row 0 has duplicates [7]", result.getErrorText());
     }
 
@@ -66,8 +66,8 @@ public class SudokuValidatorTest {
         });
         SudokuValidator.validateColumnsForDuplicates().apply(gridWithDuplicates, result);
 
-        assertEquals("INVALID", result.getMessage());
-        assertEquals("Column 7 has duplicates [5],Column 8 has duplicates [6]", result.getErrorText());
+        assertEquals("INVALID", result.getValidationMessage());
+        assertEquals("Column 7 has duplicates [5], Column 8 has duplicates [6]", result.getErrorText());
     }
 
     @Test
@@ -78,14 +78,14 @@ public class SudokuValidatorTest {
         });
         ValidationResult result = new ValidationResult();
         SudokuValidator.validateGridElements().apply(validGrid, result);
-        assertEquals("VALID", result.getMessage());
+        assertEquals("VALID", result.getValidationMessage());
     }
 
     @Test
     public void gridWithElementsGreaterThanNineShouldBeInvalid() {
         ValidationResult result = new ValidationResult();
         SudokuValidator.validateGridElements().apply(new SudokuGrid(new int[][]{{10, 11, 12, 12, 13, 15, 18, 9, 1}}), result);
-        assertEquals("INVALID", result.getMessage());
+        assertEquals("INVALID", result.getValidationMessage());
         assertEquals("Row 0 has invalid elements [10, 11, 12, 12, 13, 15, 18]", result.getErrorText());
     }
 
@@ -102,11 +102,11 @@ public class SudokuValidatorTest {
                 {5, 2, 8, 6, 3, 9, 4, 1, 7}});
         ValidationResult result = new ValidationResult();
         SudokuValidator.validateMiniGrids().apply(validGrid, result);
-        assertEquals("VALID", result.getMessage());
+        assertEquals("VALID", result.getValidationMessage());
     }
 
     @Test
-    public void mini3X3GridsWithDuplicatesShouldBeInalid() {
+    public void mini3X3GridsWithDuplicatesShouldBeInvalid() {
         SudokuGrid validGrid = new SudokuGrid(new int[][]{{7, 7, 2, 1, 5, 4, 3, 8, 6},
                 {6, 4, 3, 8, 2, 7, 1, 5, 9},
                 {8, 5, 1, 3, 9, 6, 7, 2, 4},
@@ -118,7 +118,7 @@ public class SudokuValidatorTest {
                 {5, 2, 8, 6, 3, 9, 4, 1, 7}});
         ValidationResult result = new ValidationResult();
         SudokuValidator.validateMiniGrids().apply(validGrid, result);
-        assertEquals("INVALID", result.getMessage());
-        assertEquals("Minigrid 0 has duplicates [7],Minigrid 8 has duplicates [8]", result.getErrorText());
+        assertEquals("INVALID", result.getValidationMessage());
+        assertEquals("Minigrid 0 has duplicates [7], Minigrid 8 has duplicates [8]", result.getErrorText());
     }
 }

@@ -13,7 +13,7 @@ public class SudokuPuzzleApp {
             throw new IllegalArgumentException("File path (argument) of csv sudoku grid file missing.");
         }
         ValidationResult validate = SudokuPuzzleApp.validate(fromFile(args[0]));
-        System.out.println(validate.getMessage());
+        System.out.println(validate.getValidationMessage());
         System.out.println(validate.getErrorText());
     }
 
